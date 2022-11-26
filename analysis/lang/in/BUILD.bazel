@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "in",
+    srcs = [
+        "indic_normalize.go",
+        "scripts.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/in",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+        "@com_github_bits_and_blooms_bitset//:bitset",
+    ],
+)
+
+go_test(
+    name = "in_test",
+    srcs = ["indic_normalize_test.go"],
+    embed = [":in"],
+    deps = ["//analysis"],
+)

@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "letter",
+    srcs = ["letter.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenizer/letter",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenizer/character",
+        "//registry",
+    ],
+)

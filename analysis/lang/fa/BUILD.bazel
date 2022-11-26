@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "fa",
+    srcs = [
+        "analyzer_fa.go",
+        "persian_normalize.go",
+        "stop_filter_fa.go",
+        "stop_words_fa.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/fa",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/char/zerowidthnonjoiner",
+        "//analysis/lang/ar",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "fa_test",
+    srcs = [
+        "analyzer_fa_test.go",
+        "persian_normalize_test.go",
+    ],
+    embed = [":fa"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

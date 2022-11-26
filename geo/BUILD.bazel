@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "geo",
+    srcs = [
+        "geo.go",
+        "geo_dist.go",
+        "geo_s2plugin_impl.go",
+        "geohash.go",
+        "parse.go",
+        "sloppy.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/geo",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//numeric",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+        "@com_github_blevesearch_geo//geojson",
+        "@com_github_blevesearch_geo//s2",
+    ],
+)
+
+go_test(
+    name = "geo_test",
+    srcs = [
+        "benchmark_geohash_test.go",
+        "geo_dist_test.go",
+        "geo_test.go",
+        "geohash_test.go",
+        "parse_test.go",
+        "sloppy_test.go",
+        "versus_test.go",
+    ],
+    embed = [":geo"],
+)

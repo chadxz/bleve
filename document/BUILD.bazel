@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "document",
+    srcs = [
+        "document.go",
+        "field.go",
+        "field_boolean.go",
+        "field_composite.go",
+        "field_datetime.go",
+        "field_geopoint.go",
+        "field_geoshape.go",
+        "field_ip.go",
+        "field_numeric.go",
+        "field_text.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/document",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//geo",
+        "//numeric",
+        "//size",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+        "@com_github_blevesearch_geo//geojson",
+    ],
+)
+
+go_test(
+    name = "document_test",
+    srcs = [
+        "document_test.go",
+        "field_geopoint_test.go",
+        "field_ip_test.go",
+        "field_numeric_test.go",
+    ],
+    embed = [":document"],
+)

@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "metrics",
+    srcs = [
+        "batch.go",
+        "iterator.go",
+        "reader.go",
+        "stats.go",
+        "store.go",
+        "util.go",
+        "writer.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/index/upsidedown/store/metrics",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "@com_github_blevesearch_go_metrics//:go-metrics",
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+    ],
+)
+
+go_test(
+    name = "metrics_test",
+    srcs = [
+        "metrics_test.go",
+        "store_test.go",
+    ],
+    embed = [":metrics"],
+    deps = [
+        "//index/upsidedown/store/gtreap",
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@com_github_blevesearch_upsidedown_store_api//test",
+    ],
+)

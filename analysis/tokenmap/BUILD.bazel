@@ -1,0 +1,12 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "tokenmap",
+    srcs = ["custom.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenmap",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

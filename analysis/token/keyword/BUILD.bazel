@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "keyword",
+    srcs = ["keyword.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/keyword",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "keyword_test",
+    srcs = ["keyword_test.go"],
+    embed = [":keyword"],
+    deps = ["//analysis"],
+)

@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "unicode",
+    srcs = ["unicode.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenizer/unicode",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+        "@com_github_blevesearch_segment//:segment",
+    ],
+)
+
+go_test(
+    name = "unicode_test",
+    srcs = ["unicode_test.go"],
+    embed = [":unicode"],
+    deps = [
+        "//analysis",
+        "@com_github_blevesearch_segment//:segment",
+    ],
+)

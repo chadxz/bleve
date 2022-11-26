@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "compound",
+    srcs = ["dict.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/compound",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "compound_test",
+    srcs = ["dict_test.go"],
+    embed = [":compound"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenmap",
+        "//registry",
+    ],
+)

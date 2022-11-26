@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ar",
+    srcs = [
+        "analyzer_ar.go",
+        "arabic_normalize.go",
+        "stemmer_ar.go",
+        "stop_filter_ar.go",
+        "stop_words_ar.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/ar",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/token/unicodenorm",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "ar_test",
+    srcs = [
+        "analyzer_ar_test.go",
+        "arabic_normalize_test.go",
+        "stemmer_ar_test.go",
+    ],
+    embed = [":ar"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

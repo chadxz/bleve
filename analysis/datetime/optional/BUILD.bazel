@@ -1,0 +1,13 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "optional",
+    srcs = ["optional.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/datetime/optional",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/datetime/flexible",
+        "//registry",
+    ],
+)

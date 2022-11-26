@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "cjk",
+    srcs = [
+        "analyzer_cjk.go",
+        "cjk_bigram.go",
+        "cjk_width.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/cjk",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "cjk_test",
+    srcs = [
+        "analyzer_cjk_test.go",
+        "cjk_bigram_test.go",
+        "cjk_width_test.go",
+    ],
+    embed = [":cjk"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "fi",
+    srcs = [
+        "analyzer_fi.go",
+        "stemmer_fi.go",
+        "stop_filter_fi.go",
+        "stop_words_fi.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/fi",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+        "@com_github_blevesearch_snowballstem//:snowballstem",
+        "@com_github_blevesearch_snowballstem//finnish",
+    ],
+)
+
+go_test(
+    name = "fi_test",
+    srcs = ["analyzer_fi_test.go"],
+    embed = [":fi"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

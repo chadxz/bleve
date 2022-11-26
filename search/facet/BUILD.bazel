@@ -1,0 +1,27 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "facet",
+    srcs = [
+        "facet_builder_datetime.go",
+        "facet_builder_numeric.go",
+        "facet_builder_terms.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/search/facet",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//numeric",
+        "//search",
+        "//size",
+    ],
+)
+
+go_test(
+    name = "facet_test",
+    srcs = [
+        "facet_builder_numeric_test.go",
+        "facet_builder_terms_test.go",
+    ],
+    embed = [":facet"],
+    deps = ["//numeric"],
+)

@@ -1,0 +1,34 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "moss",
+    srcs = [
+        "batch.go",
+        "iterator.go",
+        "lower.go",
+        "reader.go",
+        "stats.go",
+        "store.go",
+        "writer.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/index/upsidedown/store/moss",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@com_github_couchbase_moss//:moss",
+    ],
+)
+
+go_test(
+    name = "moss_test",
+    srcs = [
+        "lower_test.go",
+        "store_test.go",
+    ],
+    embed = [":moss"],
+    deps = [
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@com_github_blevesearch_upsidedown_store_api//test",
+    ],
+)

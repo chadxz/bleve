@@ -1,0 +1,18 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "asciifolding",
+    srcs = ["asciifolding.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/char/asciifolding",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "asciifolding_test",
+    srcs = ["asciifolding_test.go"],
+    embed = [":asciifolding"],
+)

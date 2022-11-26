@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "apostrophe",
+    srcs = ["apostrophe.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/apostrophe",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "apostrophe_test",
+    srcs = ["apostrophe_test.go"],
+    embed = [":apostrophe"],
+    deps = ["//analysis"],
+)

@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "unicodenorm",
+    srcs = ["unicodenorm.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/unicodenorm",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+        "@org_golang_x_text//unicode/norm",
+    ],
+)
+
+go_test(
+    name = "unicodenorm_test",
+    srcs = ["unicodenorm_test.go"],
+    embed = [":unicodenorm"],
+    deps = ["//analysis"],
+)

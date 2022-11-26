@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "da",
+    srcs = [
+        "analyzer_da.go",
+        "stemmer_da.go",
+        "stop_filter_da.go",
+        "stop_words_da.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/da",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+        "@com_github_blevesearch_snowballstem//:snowballstem",
+        "@com_github_blevesearch_snowballstem//danish",
+    ],
+)
+
+go_test(
+    name = "da_test",
+    srcs = ["analyzer_da_test.go"],
+    embed = [":da"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

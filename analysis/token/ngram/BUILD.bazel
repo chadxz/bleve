@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ngram",
+    srcs = ["ngram.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/ngram",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "ngram_test",
+    srcs = ["ngram_test.go"],
+    embed = [":ngram"],
+    deps = ["//analysis"],
+)

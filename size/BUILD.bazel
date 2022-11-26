@@ -1,0 +1,8 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "size",
+    srcs = ["sizes.go"],
+    importpath = "github.com/blevesearch/bleve/v2/size",
+    visibility = ["//visibility:public"],
+)

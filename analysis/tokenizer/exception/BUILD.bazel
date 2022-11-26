@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "exception",
+    srcs = ["exception.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenizer/exception",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "exception_test",
+    srcs = ["exception_test.go"],
+    embed = [":exception"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)

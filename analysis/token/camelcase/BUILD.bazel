@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "camelcase",
+    srcs = [
+        "camelcase.go",
+        "parser.go",
+        "states.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/camelcase",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "camelcase_test",
+    srcs = ["camelcase_test.go"],
+    embed = [":camelcase"],
+    deps = ["//analysis"],
+)

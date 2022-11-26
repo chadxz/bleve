@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "whitespace",
+    srcs = ["whitespace.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenizer/whitespace",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenizer/character",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "whitespace_test",
+    srcs = ["whitespace_test.go"],
+    embed = [":whitespace"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenizer/character",
+    ],
+)

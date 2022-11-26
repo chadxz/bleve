@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "flexible",
+    srcs = ["flexible.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/datetime/flexible",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "flexible_test",
+    srcs = ["flexible_test.go"],
+    embed = [":flexible"],
+    deps = ["//analysis"],
+)

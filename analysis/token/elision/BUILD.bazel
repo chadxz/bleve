@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "elision",
+    srcs = ["elision.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/elision",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "elision_test",
+    srcs = ["elision_test.go"],
+    embed = [":elision"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenmap",
+        "//registry",
+    ],
+)

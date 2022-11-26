@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "el",
+    srcs = [
+        "stop_filter_el.go",
+        "stop_words_el.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/el",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/stop",
+        "//registry",
+    ],
+)

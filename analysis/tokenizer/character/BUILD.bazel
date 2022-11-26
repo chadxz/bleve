@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "character",
+    srcs = ["character.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/tokenizer/character",
+    visibility = ["//visibility:public"],
+    deps = ["//analysis"],
+)
+
+go_test(
+    name = "character_test",
+    srcs = ["character_test.go"],
+    embed = [":character"],
+    deps = ["//analysis"],
+)

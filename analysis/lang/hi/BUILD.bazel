@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hi",
+    srcs = [
+        "analyzer_hi.go",
+        "hindi_normalize.go",
+        "hindi_stemmer_filter.go",
+        "stop_filter_hi.go",
+        "stop_words_hi.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/hi",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/lang/in",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "hi_test",
+    srcs = [
+        "analyzer_hi_test.go",
+        "hindi_normalize_test.go",
+        "hindi_stemmer_filter_test.go",
+    ],
+    embed = [":hi"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

@@ -1,0 +1,28 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "gtreap",
+    srcs = [
+        "iterator.go",
+        "reader.go",
+        "store.go",
+        "writer.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/index/upsidedown/store/gtreap",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "@com_github_blevesearch_gtreap//:gtreap",
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+    ],
+)
+
+go_test(
+    name = "gtreap_test",
+    srcs = ["store_test.go"],
+    embed = [":gtreap"],
+    deps = [
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@com_github_blevesearch_upsidedown_store_api//test",
+    ],
+)

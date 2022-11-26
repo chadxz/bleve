@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cmd",
+    srcs = [
+        "bulk.go",
+        "check.go",
+        "count.go",
+        "create.go",
+        "dictionary.go",
+        "dump.go",
+        "dumpDoc.go",
+        "dumpFields.go",
+        "fields.go",
+        "index.go",
+        "mapping.go",
+        "query.go",
+        "registry.go",
+        "root.go",
+        "scorch.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/cmd/bleve/cmd",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:bleve",
+        "//cmd/bleve/cmd/scorch",
+        "//cmd/bleve/vendor/github.com/spf13/cobra",
+        "//index/upsidedown",
+        "//mapping",
+        "//registry",
+        "//search/query",
+    ],
+)

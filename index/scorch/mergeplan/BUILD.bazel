@@ -1,0 +1,17 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mergeplan",
+    srcs = [
+        "merge_plan.go",
+        "sort.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/index/scorch/mergeplan",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "mergeplan_test",
+    srcs = ["merge_plan_test.go"],
+    embed = [":mergeplan"],
+)

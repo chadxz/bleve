@@ -1,0 +1,23 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "stop",
+    srcs = ["stop.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/stop",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "stop_test",
+    srcs = ["stop_test.go"],
+    embed = [":stop"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenmap",
+        "//registry",
+    ],
+)

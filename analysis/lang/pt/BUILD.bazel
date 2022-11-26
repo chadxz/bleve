@@ -1,0 +1,33 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "pt",
+    srcs = [
+        "analyzer_pt.go",
+        "light_stemmer_pt.go",
+        "stop_filter_pt.go",
+        "stop_words_pt.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/pt",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "pt_test",
+    srcs = [
+        "analyzer_pt_test.go",
+        "light_stemmer_pt_test.go",
+    ],
+    embed = [":pt"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

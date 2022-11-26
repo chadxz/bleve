@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "collector",
+    srcs = [
+        "heap.go",
+        "list.go",
+        "slice.go",
+        "topn.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/search/collector",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//search",
+        "//size",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "collector_test",
+    srcs = [
+        "bench_test.go",
+        "search_test.go",
+        "topn_test.go",
+    ],
+    embed = [":collector"],
+    deps = [
+        "//search",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)

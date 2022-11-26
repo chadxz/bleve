@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ckb",
+    srcs = [
+        "analyzer_ckb.go",
+        "sorani_normalize.go",
+        "sorani_stemmer_filter.go",
+        "stop_filter_ckb.go",
+        "stop_words_ckb.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/ckb",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "ckb_test",
+    srcs = [
+        "analyzer_ckb_test.go",
+        "sorani_normalize_test.go",
+        "sorani_stemmer_filter_test.go",
+    ],
+    embed = [":ckb"],
+    deps = [
+        "//analysis",
+        "//analysis/tokenizer/single",
+        "//registry",
+    ],
+)

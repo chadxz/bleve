@@ -1,0 +1,38 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "de",
+    srcs = [
+        "analyzer_de.go",
+        "german_normalize.go",
+        "light_stemmer_de.go",
+        "stemmer_de_snowball.go",
+        "stop_filter_de.go",
+        "stop_words_de.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/de",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+        "@com_github_blevesearch_snowballstem//:snowballstem",
+        "@com_github_blevesearch_snowballstem//german",
+    ],
+)
+
+go_test(
+    name = "de_test",
+    srcs = [
+        "analyzer_de_test.go",
+        "german_normalize_test.go",
+        "stemmer_de_test.go",
+    ],
+    embed = [":de"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

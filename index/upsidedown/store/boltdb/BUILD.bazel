@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "boltdb",
+    srcs = [
+        "iterator.go",
+        "reader.go",
+        "stats.go",
+        "store.go",
+        "writer.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/index/upsidedown/store/boltdb",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@io_etcd_go_bbolt//:bbolt",
+    ],
+)
+
+go_test(
+    name = "boltdb_test",
+    srcs = ["store_test.go"],
+    embed = [":boltdb"],
+    deps = [
+        "@com_github_blevesearch_upsidedown_store_api//:upsidedown_store_api",
+        "@com_github_blevesearch_upsidedown_store_api//test",
+        "@io_etcd_go_bbolt//:bbolt",
+    ],
+)

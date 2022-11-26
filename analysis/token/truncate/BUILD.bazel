@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "truncate",
+    srcs = ["truncate.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/truncate",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "truncate_test",
+    srcs = ["truncate_test.go"],
+    embed = [":truncate"],
+    deps = ["//analysis"],
+)

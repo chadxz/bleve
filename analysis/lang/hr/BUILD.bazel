@@ -1,0 +1,31 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hr",
+    srcs = [
+        "analyzer_hr.go",
+        "stemmer_hr.go",
+        "stop_filter_hr.go",
+        "stop_words_hr.go",
+        "suffix_transformation_hr.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/hr",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "hr_test",
+    srcs = ["analyzer_hr_test.go"],
+    embed = [":hr"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

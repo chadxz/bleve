@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "lowercase",
+    srcs = ["lowercase.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/lowercase",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "lowercase_test",
+    srcs = ["lowercase_test.go"],
+    embed = [":lowercase"],
+    deps = ["//analysis"],
+)

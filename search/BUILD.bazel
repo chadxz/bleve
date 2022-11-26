@@ -1,0 +1,35 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "search",
+    srcs = [
+        "collector.go",
+        "explanation.go",
+        "facets_builder.go",
+        "levenshtein.go",
+        "pool.go",
+        "search.go",
+        "sort.go",
+        "util.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/search",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//geo",
+        "//numeric",
+        "//size",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "search_test",
+    srcs = [
+        "facets_builder_test.go",
+        "levenshtein_test.go",
+        "pool_test.go",
+        "search_test.go",
+        "util_test.go",
+    ],
+    embed = [":search"],
+)

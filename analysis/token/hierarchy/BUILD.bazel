@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "hierarchy",
+    srcs = ["hierarchy.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/hierarchy",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "hierarchy_test",
+    srcs = ["hierarchy_test.go"],
+    embed = [":hierarchy"],
+    deps = ["//analysis"],
+)

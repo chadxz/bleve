@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "simple",
+    srcs = ["simple.go"],
+    importpath = "github.com/blevesearch/bleve/v2/search/highlight/fragmenter/simple",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "//search/highlight",
+    ],
+)
+
+go_test(
+    name = "simple_test",
+    srcs = ["simple_test.go"],
+    embed = [":simple"],
+    deps = ["//search/highlight"],
+)

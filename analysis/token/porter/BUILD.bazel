@@ -1,0 +1,20 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "porter",
+    srcs = ["porter.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/porter",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+        "@com_github_blevesearch_go_porterstemmer//:go-porterstemmer",
+    ],
+)
+
+go_test(
+    name = "porter_test",
+    srcs = ["porter_test.go"],
+    embed = [":porter"],
+    deps = ["//analysis"],
+)

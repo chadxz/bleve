@@ -1,0 +1,14 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "simple",
+    srcs = ["simple.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/analyzer/simple",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/lowercase",
+        "//analysis/tokenizer/letter",
+        "//registry",
+    ],
+)

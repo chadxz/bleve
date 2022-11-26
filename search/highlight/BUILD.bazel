@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "highlight",
+    srcs = [
+        "highlighter.go",
+        "term_locations.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/search/highlight",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//search",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "highlight_test",
+    srcs = ["term_locations_test.go"],
+    embed = [":highlight"],
+    deps = ["//search"],
+)

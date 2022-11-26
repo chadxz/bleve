@@ -1,0 +1,30 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "analysis",
+    srcs = [
+        "freq.go",
+        "tokenmap.go",
+        "type.go",
+        "util.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_blevesearch_bleve_index_api//:bleve_index_api"],
+)
+
+go_test(
+    name = "analysis_test",
+    srcs = [
+        "benchmark_test.go",
+        "freq_test.go",
+        "tokenmap_test.go",
+        "util_test.go",
+    ],
+    embed = [":analysis"],
+    deps = [
+        "//analysis/analyzer/standard",
+        "//registry",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)

@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ca",
+    srcs = [
+        "articles_ca.go",
+        "elision_ca.go",
+        "stop_filter_ca.go",
+        "stop_words_ca.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/ca",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/elision",
+        "//analysis/token/stop",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "ca_test",
+    srcs = ["elision_ca_test.go"],
+    embed = [":ca"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

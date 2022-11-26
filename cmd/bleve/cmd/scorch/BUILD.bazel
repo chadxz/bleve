@@ -1,0 +1,21 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "scorch",
+    srcs = [
+        "ascii.go",
+        "deleted.go",
+        "info.go",
+        "internal.go",
+        "root.go",
+        "snapshot.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/cmd/bleve/cmd/scorch",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//cmd/bleve/vendor/github.com/spf13/cobra",
+        "//index/scorch",
+        "//index/scorch/mergeplan",
+        "@com_github_blevesearch_scorch_segment_api_v2//:scorch_segment_api",
+    ],
+)

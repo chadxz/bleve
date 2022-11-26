@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "scorer",
+    srcs = [
+        "scorer_conjunction.go",
+        "scorer_constant.go",
+        "scorer_disjunction.go",
+        "scorer_term.go",
+        "sqrt_cache.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/search/scorer",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//search",
+        "//size",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "scorer_test",
+    srcs = [
+        "scorer_constant_test.go",
+        "scorer_term_test.go",
+    ],
+    embed = [":scorer"],
+    deps = [
+        "//search",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)

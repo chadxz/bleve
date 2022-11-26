@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "ansi",
+    srcs = ["ansi.go"],
+    importpath = "github.com/blevesearch/bleve/v2/search/highlight/highlighter/ansi",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//registry",
+        "//search/highlight",
+        "//search/highlight/format/ansi",
+        "//search/highlight/fragmenter/simple",
+        "//search/highlight/highlighter/simple",
+    ],
+)

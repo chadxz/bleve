@@ -1,0 +1,41 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "mapping",
+    srcs = [
+        "analysis.go",
+        "document.go",
+        "field.go",
+        "index.go",
+        "mapping.go",
+        "reflect.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/mapping",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/analyzer/keyword",
+        "//analysis/analyzer/standard",
+        "//analysis/datetime/optional",
+        "//document",
+        "//geo",
+        "//registry",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "mapping_test",
+    srcs = [
+        "examples_test.go",
+        "mapping_test.go",
+        "reflect_test.go",
+    ],
+    embed = [":mapping"],
+    deps = [
+        "//analysis/tokenizer/exception",
+        "//analysis/tokenizer/regexp",
+        "//document",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)

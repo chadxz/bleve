@@ -1,0 +1,43 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "fr",
+    srcs = [
+        "analyzer_fr.go",
+        "articles_fr.go",
+        "elision_fr.go",
+        "light_stemmer_fr.go",
+        "minimal_stemmer_fr.go",
+        "stemmer_fr_snowball.go",
+        "stop_filter_fr.go",
+        "stop_words_fr.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/fr",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/elision",
+        "//analysis/token/lowercase",
+        "//analysis/token/stop",
+        "//analysis/tokenizer/unicode",
+        "//registry",
+        "@com_github_blevesearch_snowballstem//:snowballstem",
+        "@com_github_blevesearch_snowballstem//french",
+    ],
+)
+
+go_test(
+    name = "fr_test",
+    srcs = [
+        "analyzer_fr_test.go",
+        "elision_fr_test.go",
+        "light_stemmer_fr_test.go",
+        "minimal_stemmer_fr_test.go",
+        "stemmer_fr_snowball_test.go",
+    ],
+    embed = [":fr"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

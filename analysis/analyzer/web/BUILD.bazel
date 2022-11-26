@@ -1,0 +1,15 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "web",
+    srcs = ["web.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/analyzer/web",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/lang/en",
+        "//analysis/token/lowercase",
+        "//analysis/tokenizer/web",
+        "//registry",
+    ],
+)

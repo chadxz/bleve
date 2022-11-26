@@ -1,0 +1,22 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "numeric",
+    srcs = [
+        "bin.go",
+        "float.go",
+        "prefix_coded.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/numeric",
+    visibility = ["//visibility:public"],
+)
+
+go_test(
+    name = "numeric_test",
+    srcs = [
+        "bin_test.go",
+        "float_test.go",
+        "prefix_coded_test.go",
+    ],
+    embed = [":numeric"],
+)

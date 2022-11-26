@@ -1,0 +1,36 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "http",
+    srcs = [
+        "alias.go",
+        "debug.go",
+        "doc_count.go",
+        "doc_delete.go",
+        "doc_get.go",
+        "doc_index.go",
+        "fields.go",
+        "index_create.go",
+        "index_delete.go",
+        "index_get.go",
+        "index_list.go",
+        "registry.go",
+        "search.go",
+        "util.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/http",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//:bleve",
+        "//index/upsidedown",
+        "//mapping",
+        "//search/query",
+        "@com_github_blevesearch_bleve_index_api//:bleve_index_api",
+    ],
+)
+
+go_test(
+    name = "http_test",
+    srcs = ["handlers_test.go"],
+    embed = [":http"],
+)

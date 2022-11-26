@@ -1,0 +1,29 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "ga",
+    srcs = [
+        "articles_ga.go",
+        "elision_ga.go",
+        "stop_filter_ga.go",
+        "stop_words_ga.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/ga",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/elision",
+        "//analysis/token/stop",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "ga_test",
+    srcs = ["elision_ga_test.go"],
+    embed = [":ga"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)

@@ -1,0 +1,19 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library", "go_test")
+
+go_library(
+    name = "reverse",
+    srcs = ["reverse.go"],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/token/reverse",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//registry",
+    ],
+)
+
+go_test(
+    name = "reverse_test",
+    srcs = ["reverse_test.go"],
+    embed = [":reverse"],
+    deps = ["//analysis"],
+)

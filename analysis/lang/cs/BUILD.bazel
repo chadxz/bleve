@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "cs",
+    srcs = [
+        "stop_filter_cs.go",
+        "stop_words_cs.go",
+    ],
+    importpath = "github.com/blevesearch/bleve/v2/analysis/lang/cs",
+    visibility = ["//visibility:public"],
+    deps = [
+        "//analysis",
+        "//analysis/token/stop",
+        "//registry",
+    ],
+)
